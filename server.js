@@ -3,6 +3,7 @@ const path = require('path');
 const http = require('http');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
+const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./utils/users');
 
 const PORT = 3000 || process.env.PORT;
 const botName = 'Admin Bot';
@@ -14,19 +15,29 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', socket => {
-    // console.log('Nueva conexion...');
 
-    socket.emit('message', formatMessage(botName, 'Bienvenido al Chat Online!'));
+    socket.on('joinRoom', ({ username, room }) => {
+        const user = userJoin(socket.id, username, room);
+        
+        socket.join(user.room);
 
-    socket.broadcast.emit('message', formatMessage(botName, 'Un usuario se unio al chat'));
+        socket.emit('message', formatMessage(botName, 'Bienvenido al Chat Online!'));
 
-    socket.on('disconnect', () => {
-        io.emit('message', formatMessage(botName, 'Un usuario salio del chat'));
+        socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} se unio al chat`));
     });
 
-    socket.on('chatMessage', (msg) => {
-        // console.log(msg);
-        io.emit('message', formatMessage('USER', msg));
+    socket.on('chatMessage', msg => {
+        const user = getCurrentUser(socket.id);
+
+        io.to(user.room).emit('message', formatMessage(user.username, msg));
+    });
+
+    socket.on('disconnect', () => {
+        const user = userLeave(socket.id);
+
+        if (user) {
+            io.to(user.room).emit('message', formatMessage(botName, `${user.username} salio del chat`));
+        }
     });
 });
 
