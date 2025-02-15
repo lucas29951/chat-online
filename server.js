@@ -13,6 +13,17 @@ io.on('connection', socket => {
     console.log('Nueva conexion...');
 
     socket.emit('message', 'Bienvenido al Chat Online!');
+
+    socket.broadcast.emit('message', 'Un usuario se unio al chat');
+
+    socket.on('disconnect', () => {
+        io.emit('message', 'Un usuario salio del chat');
+    });
+
+    socket.on('chatMessage', (msg) => {
+        // console.log(msg);
+        io.emit('message', msg);
+    });
 });
 
 const PORT = 3000 || process.env.PORT;
