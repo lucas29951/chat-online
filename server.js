@@ -11,6 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', socket => {
     console.log('Nueva conexion...');
+
+    socket.emit('message', 'Bienvenido al Chat Online!');
 });
 
 const PORT = 3000 || process.env.PORT;
