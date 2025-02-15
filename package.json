@@ -1,0 +1,11 @@
+{
+  "name": "chat-online",
+  "version": "1.0.0",
+  "description": "Chat en tiempo real",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Rodriguez",
+  "license": "MIT"
+}
