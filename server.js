@@ -1,9 +1,18 @@
 const express = require('express');
 const path = require('path');
+const http = require('http');
+const socketio = require('socket.io');
+
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+io.on('connection', socket => {
+    console.log('Nueva conexion...');
+});
+
 const PORT = 3000 || process.env.PORT;
 
-app.listen(PORT, () => console.log(`Server ejecutandose en el puerto ${PORT}`));
+server.listen(PORT, () => console.log(`Server ejecutandose en el puerto ${PORT}`));
