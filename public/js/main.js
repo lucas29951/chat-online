@@ -52,3 +52,13 @@ function outputUsers(users) {
     ${users.map(user => `<li>${user.username}</li>`).join('')}
     `;
 }
+
+document.getElementById('leave-btn').addEventListener('click', () => {
+    const leaveRoom = confirm('Esta seguro que desea salir de la sala?');
+
+    if (leaveRoom) {
+        window.location = '../index.html';
+    } else {
+        // Continuamos en la sala
+    }
+});
