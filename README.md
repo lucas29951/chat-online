@@ -15,6 +15,8 @@
 - [📸 Capturas de Pantalla](#-capturas-de-pantalla)  
 - [🔗 Contribuciones](#-contribuciones)  
 - [📄 Licencia](#-licencia)  
+- [🎖️ Créditos](#️-créditos)
+- [📩 Contacto](#-contacto)
 
 ---
 
@@ -104,7 +106,7 @@ Este proyecto está bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICE
 
 ---
 
-## Créditos
+## 🎖️ Créditos
 
 Este proyecto fue realizado basandose en el proyecto de [Brad Traversy](https://github.com/bradtraversy). Agradezco al autor por compartir sus conocimientos y recursos.
 
