@@ -81,10 +81,10 @@ http://localhost:3000
 ## 📸 Capturas de Pantalla  
 
 ### 🎨 Interfaz Principal  
-![Interfaz Principal](ruta_a_imagen_1.png)  
+![Interfaz Principal](/screenshots/interfaz-principal.png)  
 
 ### 🗨️ Conversación en Tiempo Real  
-![Chat en Vivo](ruta_a_imagen_2.png)  
+![Chat en Vivo](/screenshots/chat-en-vivo.png)  
 
 ---
 
