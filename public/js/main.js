@@ -4,9 +4,9 @@ const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const usersList = document.getElementById('users');
 
-const { username, room } = Qs.parse(location.search, {
-    ignoreQueryPrefix: true
-});
+
+const username = sessionStorage.getItem('username');
+const room = sessionStorage.getItem('room');
 
 
 const socket = io();
@@ -57,6 +57,9 @@ document.getElementById('leave-btn').addEventListener('click', () => {
     const leaveRoom = confirm('Esta seguro que desea salir de la sala?');
 
     if (leaveRoom) {
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('room');
+
         window.location = '../index.html';
     } else {
         // Continuamos en la sala
